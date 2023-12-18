@@ -1,0 +1,34 @@
+#server.port=8083
+#
+#spring.application.name=API-GATEWAY
+
+server:
+  port: 8083
+  
+spring:
+  application: 
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: QUIZ-SERVICE
+          uri: localhost:8081
+          predicates:
+            - Path=/quiz/**
+        
+#        - id: service2_route
+#          uri: http://service2-hostname:service2-port  # Route to Service 2
+#          predicates:
+#            - Path=/service2/**
+    
+    
+#spring.cloud.gateway.routes[0].id=QUIZ-SERVICE
+#spring.cloud.gateway.routes[0].uri=lb://QUIZ-SERVICE
+#spring.cloud.gateway.routes[0].predicates[0]=Path= /quiz/**
+
+    
+    
+#uri
+#predicate
+#path
+

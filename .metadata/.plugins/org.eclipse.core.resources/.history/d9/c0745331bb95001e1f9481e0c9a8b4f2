@@ -1,0 +1,18 @@
+server:
+  port: 8083
+
+eureka:
+  client:
+    service-url:
+      defaultZone=http://localhost:8761/eureka
+  
+spring:
+  application: 
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes[0]:
+        - id: QUIZ-SERVICE
+          uri: lb://QUIZ-SERVICE
+          predicates[0]:
+            - Path=/quiz/**

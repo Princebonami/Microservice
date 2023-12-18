@@ -1,0 +1,47 @@
+package com.quiz.Controllers;
+
+import java.util.List;
+
+import org.springframework.core.env.Environment;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.quiz.entities.Quiz;
+import com.quiz.services.QuizServices;
+
+import lombok.extern.slf4j.Slf4j;
+
+@RestController
+@RequestMapping("/quiz")
+@Slf4j
+public class QuizController {
+
+	private Environment environment;
+	private QuizServices quizServices;
+
+	public QuizController(QuizServices quizServices) {
+		super();
+		this.quizServices = quizServices;
+	}
+
+	@PostMapping
+	public Quiz create(@RequestBody Quiz quiz) {
+		environment.getProperty("server.port");
+		return quizServices.add(quiz);
+	}
+
+	@GetMapping
+	public List<Quiz> get() {
+		return quizServices.get();
+	}
+
+	@GetMapping("/{id}")
+	public Quiz getById(@PathVariable("id") Long id) {
+		return quizServices.get(id);
+	}
+
+}

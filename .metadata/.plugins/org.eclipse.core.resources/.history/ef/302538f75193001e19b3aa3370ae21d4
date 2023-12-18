@@ -1,0 +1,18 @@
+package com.question.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import com.question.entities.Question;
+
+@Component
+public interface QuestionService {
+	
+	
+	public Question add(Question question);
+	public List<Question> get();
+	public Question get(Long id);
+
+}
